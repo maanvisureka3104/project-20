@@ -23,12 +23,27 @@ function draw() {
     wall.y-bullet.y<bullet.height/2+wall.height/2)
     {
     bullet.velocityX=0;
-   if(damage<10){
+
+    if(hasCollided(bullet,wall)){
+    bullet.velocityX=0;
+    var damage=0.5*weight*speed*speed/(thickness*thickness*thickness);
+     if(damage<10){
      wall.shapeColour="green"
-   }
-   if(damage>10){
+     }
+     if(damage>10){
      wall.shapeColor="red"
-   }
+     }
     }
+  }
   drawSprites();
+}
+
+function hasCollided(lbullet,lwall){
+bulletRightEdge=lbullet.x+lbullet.width;
+wallLeftEdge=lwall.x;
+if(bulletRightEdge>=wallLeftEdge)
+{
+  return true
+}
+ return false
 }
